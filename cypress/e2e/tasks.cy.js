@@ -13,5 +13,10 @@ describe("Tasks management", () => {
     cy.get(".backdrop").click({ force: true });
     cy.get(".backdrop").should("not.exist");
     cy.get(".modal").should("not.exist");
+    // ______________________________________________________________________
+    cy.contains("Add Task").click();
+    cy.contains("Cancel").click();
+    cy.get(".modal").should("not.exist");
+    cy.get(".backdrop").should("not.exist");
   });
 });
