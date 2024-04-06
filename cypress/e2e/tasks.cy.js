@@ -32,4 +32,10 @@ describe("Tasks management", () => {
     cy.get(".task h2").contains("Test task");
     cy.get(".task p").contains("This is a test task");
   });
+  // ______________________________________________________________________
+  it("should validate user input", () => {
+    cy.contains("Add Task").click();
+    cy.get(".modal").contains("Add Task").click();
+    cy.contains("Please provide values");
+  });
 });
