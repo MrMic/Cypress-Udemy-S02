@@ -38,4 +38,19 @@ describe("Tasks management", () => {
     cy.get(".modal").contains("Add Task").click();
     cy.contains("Please provide values");
   });
+  // ______________________________________________________________________
+  it("should filter tasks", () => {
+    cy.contains("Add Task").click();
+    cy.get("#title").type("New task");
+    cy.get("#summary").type("Some description");
+    cy.get("#category").select("urgent");
+    cy.get(".modal").contains("Add Task").click();
+    cy.get(".task").should("have.length", 1);
+    cy.get("#filter").select("moderate");
+    cy.get(".task").should("have.length", 0);
+    cy.get("#filter").select("urgent");
+    cy.get(".task").should("have.length", 1);
+    cy.get("#filter").select("all");
+    cy.get(".task").should("have.length", 1);
+  });
 });
