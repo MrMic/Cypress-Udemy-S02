@@ -53,4 +53,20 @@ describe("Tasks management", () => {
     cy.get("#filter").select("all");
     cy.get(".task").should("have.length", 1);
   });
+  // ______________________________________________________________________
+  it("should add multiple tasks", () => {
+    cy.contains("Add Task").click();
+    cy.get("#title").type("Task1");
+    cy.get("#summary").type("Description1");
+    cy.get(".modal").contains("Add Task").click();
+    cy.get(".task").should("have.length", 1);
+
+    cy.contains("Add Task").click();
+    cy.get("#title").type("Task2");
+    cy.get("#summary").type("Description2");
+    cy.get(".modal").contains("Add Task").click();
+    cy.get(".task").should("have.length", 2);
+    cy.get(".task").eq(0).contains("Task1");
+    cy.get(".task").eq(1).contains("Task2");
+  });
 });
